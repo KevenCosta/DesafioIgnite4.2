@@ -8,9 +8,14 @@ interface IRequest {
 class ListAllUsersUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
-  execute({ user_id }: IRequest): User[] {
-    // Complete aqui
+  execute({ user_id }: any): User[] {//antes era irequest
+    const userTestPermission = this.usersRepository.findById(user_id)
+    if(!userTestPermission.admin ){
+        throw new Error("User does not have permission!")
+    }
+    const users = this.usersRepository.list();
+    return users;
   }
 }
 
-export { ListAllUsersUseCase };
+export { ListAllUsersUseCase, IRequest };
