@@ -8,7 +8,7 @@ class TurnUserAdminController {
   handle(request: Request, response: Response): Response {
     const id = request.params.user_id
     const user = this.turnUserAdminUseCase.execute(id)
-    return response.json({user})
+    return response.json(user)
   }
 }
 

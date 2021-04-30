@@ -11,11 +11,12 @@ class TurnUserAdminUseCase {
   execute({ user_id }: any): User {//alterado IRequest
 
     const user = this.usersRepository.findById(user_id)
-    if(!user){
-      throw new Error("User was not found!")
+    if(user){
+      const userAlterado = this.usersRepository.turnAdmin(user)
+      return userAlterado;
     }
-    const userAlterado = this.usersRepository.turnAdmin(user)
-    return userAlterado;
+    throw new Error("User was not found!")
+    
   }
 }
 
