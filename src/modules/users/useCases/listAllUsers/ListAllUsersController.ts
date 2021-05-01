@@ -7,8 +7,15 @@ class ListAllUsersController {
 
   handle(request: Request, response: Response): Response {
     const id = request.params.user_id
-    const all = this.listAllUsersUseCase.execute(id);
+    var erro = ""
+    try{const all = this.listAllUsersUseCase.execute(id);
     return response.json({all})
+        }catch(e){
+            erro = e.message
+                }
+    return response.status(400).json({error:erro})
+
+
   }
 }
 
