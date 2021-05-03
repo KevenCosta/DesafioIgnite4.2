@@ -10,7 +10,7 @@ class ListAllUsersUseCase {
 
   execute({ user_id }: any): User[] {//antes era irequest
     const userTestPermission = this.usersRepository.findById(user_id)
-    if(!userTestPermission.admin ){
+    if(userTestPermission.admin == false ||  !userTestPermission.id){
         throw new Error("User does not have permission!")
     }
     const users = this.usersRepository.list();
@@ -18,4 +18,4 @@ class ListAllUsersUseCase {
   }
 }
 
-export { ListAllUsersUseCase, IRequest };
+export { ListAllUsersUseCase };
