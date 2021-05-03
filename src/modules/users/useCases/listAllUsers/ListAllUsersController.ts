@@ -1,14 +1,21 @@
 import { Request, Response } from "express";
 
-import { IRequest, ListAllUsersUseCase } from "./ListAllUsersUseCase";
+import { ListAllUsersUseCase } from "./ListAllUsersUseCase";
 
 class ListAllUsersController {
   constructor(private listAllUsersUseCase: ListAllUsersUseCase) {}
 
   handle(request: Request, response: Response): Response {
-    const id = request.params.user_id
-    const all = this.listAllUsersUseCase.execute(id);
-    return response.json({all})
+    const user_id = request.headers
+    var erro = ""
+    try{const all = this.listAllUsersUseCase.execute(user_id);
+    console.log(all)
+    response.json({all})
+        }catch(e){
+            erro = e.message
+                }
+    console.log(erro)
+    return response.status(400).json({error:erro})
   }
 }
 
