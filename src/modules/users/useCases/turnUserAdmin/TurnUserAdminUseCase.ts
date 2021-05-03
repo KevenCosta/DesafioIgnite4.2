@@ -9,7 +9,7 @@ class TurnUserAdminUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
   execute({ user_id }: any): User {//alterado IRequest
-    console.log(user_id)
+    //console.log(user_id)
     const user = this.usersRepository.findById(user_id)
     
     if(user){

@@ -6,9 +6,9 @@ class TurnUserAdminController {
   constructor(private turnUserAdminUseCase: TurnUserAdminUseCase) {}
 
   handle(request: Request, response: Response): Response {
-    const {id} = request.params
+    const id = request.params//Se declarar como objeto causa erro
     var erro = ""
-    try{const user = this.turnUserAdminUseCase.execute({id})
+    try{const user = this.turnUserAdminUseCase.execute(id)
     return response.json(user)
         }
     catch(e){
