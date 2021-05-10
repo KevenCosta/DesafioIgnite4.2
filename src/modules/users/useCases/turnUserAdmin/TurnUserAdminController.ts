@@ -9,7 +9,7 @@ class TurnUserAdminController {
     const id = request.params//Se declarar como objeto causa erro
     var erro = ""
     try{const user = this.turnUserAdminUseCase.execute(id)
-    return response.json(user)
+    return response.status(200).json(user)
         }
     catch(e){
       erro = e.message

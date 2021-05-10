@@ -10,7 +10,7 @@ class ShowUserProfileController {
     var erro = ""
     try{
       const user = this.showUserProfileUseCase.execute(id)
-    return response.json(user)
+    return response.status(200).json(user)
         }
         catch(e){
           erro = e.message
